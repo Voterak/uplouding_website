@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Odbierz udostępnione dane</title>
+            <style>
+                @import url(style.css);
+            </style>
+        </head>
+        <body>
+            <header>
+                <section id="tekoleczkodologowania" type="button" onclick="window.location.href='login.html'">
+                        <button id="elo"></button>
+                </section>
+                <section id="nawigacja">
+                    <button type="button" onclick="window.location.href='kod.html'">
+                        Udostępnij
+                    </button>
+                    <button type="button" onclick="window.location.href='outkod.html'">
+                        Odbierz
+                    </button>
+                </section>
+            </header>
+            <main>
+                <section id="kod1">
+                    <section id="kod">
+                        <form id="codeForm">
+                            <label for="fname">Podaj Kod:</label><br>
+                            <section>
+                                <input type="text" id="fname" name="fname" maxlength="12" autocomplete="off">
+                                <button id="gowno1" type="submit" class="search-btn" aria-label="Wyszukaj">OK</button>
+                            </section>
+                        </form>
+                    </section>
+                </section>
+                <section id="wynikkod">
+                    <p class="shared-status">Wpisz kod, aby pobrać udostępniony tekst lub plik.</p>
+                </section>
+            </main>
+            <script src="share-store.js"></script>
+            <script type="module" src="auth-logo.js"></script>
+            <script type="module" src="share-store.js"></script>
+            <script type="module" src="outkod.js"></script>
+        </body>
+    </html>

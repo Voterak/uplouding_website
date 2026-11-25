@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Udostępnij</title>
+            <style>
+                @import url(style.css);
+            </style>
+        </head>
+        <body>
+            <header>
+                <section id="tekoleczkodologowania" type="button">
+                        <button id="elo">LS</button>
+                </section>
+                <section id="nawigacja">
+                    <button type="button" onclick="window.location.href='kod.html'">
+                        Udostępnij
+                    </button>
+                    <button type="button" onclick="window.location.href='outkod.html'">
+                        Odbierz
+                    </button>
+                    <button type="button" onclick="window.location.href='inter.html'">
+                        Moje
+                    </button>
+                    <button type="button" onclick="window.location.href='q&a.html'">
+                        Q&A
+                    </button>
+                </section>
+            </header>
+            <main>
+                <section id="kod1">
+                    <section id="kod">
+                        <form id="shareForm">
+                            <div class="share-type-tabs" role="tablist" aria-label="Rodzaj udostępnienia">
+                                <button class="share-type active" id="textTypeButton" type="button" role="tab" aria-selected="true" data-type="text">Tekst</button>
+                                <button class="share-type" id="fileTypeButton" type="button" role="tab" aria-selected="false" data-type="file">Plik</button>
+                            </div>
+
+                            <div id="textSharePanel" class="share-panel">
+                            <label for="shareText">Tekst do udostępnienia:</label><br>
+                            <div class="format-toolbar" aria-label="Formatowanie tekstu">
+                                <button type="button" class="format-button" data-command="bold" aria-label="Pogrubienie"><b>B</b></button>
+                                <button type="button" class="format-button" data-command="italic" aria-label="Kursywa"><i>I</i></button>
+                                <button type="button" class="format-button" data-command="underline" aria-label="Podkreślenie"><u>U</u></button>
+                                <button type="button" class="format-button marker-button" data-command="backColor" data-value="#ffe58f" aria-label="Zakreślacz" title="Zakreślacz"><span></span></button>
+                            </div>
+                            <div id="shareText" class="creator-text" contenteditable="true" role="textbox" aria-multiline="true"></div>
+                            </div>
+
+                            <div id="fileSharePanel" class="share-panel" hidden>
+                            <label for="shareFile">Wybierz plik:</label><br>
+                            <input type="file" id="shareFile" name="shareFile">
+                            </div>
+
+                            <label for="openLimit">Liczba otwarć:</label><br>
+                            <input type="number" id="openLimit" name="openLimit" min="1" max="100" value="1" required>
+                            <button id="gowno1" type="submit" class="search-btn">Udostępnij</button>
+                        </form>
+                    </section>
+                </section>
+                <section id="wynikkod">
+                    <p class="shared-status">Wybierz tekst albo plik, aby utworzyć kod.</p>
+                </section>
+            </main>
+            <script type="module" src="auth-logo.js"></script>
+            <script type="module" src="share-store.js"></script>
+            <script type="module" src="kod.js"></script>
+        </body>
+    </html>

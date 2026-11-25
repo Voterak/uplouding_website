@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logowanie</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="auth-page">
+    <header>
+        <section id="tekoleczkodologowania">
+            <button id="elo" type="button" aria-label="Strona główna" onclick="window.location.href='index.html'">LS</button>
+        </section>
+    </header>
+
+    <main class="auth-main">
+        <section class="auth-card" id="login">
+            <div class="auth-tabs" role="tablist" aria-label="Tryb formularza">
+                <button class="auth-tab active" id="loginTab" type="button" role="tab" aria-selected="true">Logowanie</button>
+                <button class="auth-tab" id="registerTab" type="button" role="tab" aria-selected="false">Rejestracja</button>
+            </div>
+
+            <form id="authForm" novalidate>
+                <h1 id="authTitle">Zaloguj się</h1>
+
+                <label for="authName">E-mail</label>
+                <input type="email" id="authName" name="authName" autocomplete="username" required>
+
+                <label for="authPassword">Hasło</label>
+                <div class="password-field">
+                    <input type="password" id="authPassword" name="authPassword" autocomplete="current-password" minlength="6" required>
+                    <button class="password-toggle" type="button" id="passwordToggle" aria-label="Pokaż hasło">Pokaż</button>
+                </div>
+
+                <p class="auth-message" id="authMessage" role="status" aria-live="polite"></p>
+                <button class="auth-submit" id="authSubmit" type="submit">Zaloguj się</button>
+            </form>
+        </section>
+    </main>
+
+    <script type="module" src="auth-logo.js"></script>
+    <script type="module" src="login.js"></script>
+</body>
+</html>
