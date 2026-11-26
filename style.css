@@ -45,18 +45,21 @@ body {
   text-transform: uppercase;
 }
 header button {
-    border-radius: 20px;
+    border-radius: 10px;
     width: 100px;
     height: 30px;
-    background-color: #e7e5c7;
+    background-color: white;
     border: 0px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
     margin: 15px;
+    border: 1px, solid, rgb(231, 231, 231);
 }
 header {
-    background-color: #e7e5c7;
+    background-color: linear-gradient(90deg, rgb(236, 236, 237), rgb(216, 216, 216));
     height: 60px;
     text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-top: 1px, solid, rgb(152, 152, 152);
 }
 #share-container {
     width: min(900px, calc(100% - 40px));
@@ -428,4 +431,42 @@ header {
 
 .auth-message.success {
     color: #28724a;
+}
+#applicationpsl img{
+    height:50px;
+    width:50px;
+    border-radius:10%;
+    margin: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+#applicationpsl img:hover{
+    rotate: 5deg;
+}
+
+iframe {
+    width: 100%;
+    height: 1009px;
+    border: 0px;
+}
+footer {
+    background-color: linear-gradient(90deg, rgb(236, 236, 237), rgb(216, 216, 216));
+    height: 200px;
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-top: 1px, solid, rgb(152, 152, 152);
+}
+#applicationpsl {
+    background-color: linear-gradient(90deg, rgb(236, 236, 237), rgb(216, 216, 216));
+}
+#navigation {
+    background-color: linear-gradient(90deg, rgb(236, 236, 237), rgb(216, 216, 216));
+    text-align: center;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
+    border-top: 1px, solid, rgb(152, 152, 152);
+}
+footer h4 {
+    padding: 70px;
+}
+#applicationpsl h3 {
+    margin: 20px;
 }
