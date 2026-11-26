@@ -10,18 +10,18 @@
         </head>
         <body>
             <header>
-                <section id="tekoleczkodologowania" type="button">
-                        <button id="elo">LS</button>
+                <section id="logo-account" type="button">
+                        <button id="account-avatar">LS</button>
                 </section>
-                <section id="nawigacja">
+                <section id="navigation">
                     <button type="button" onclick="window.location.href='kod.html'">
-                        Udostępnij
+                        Upload
                     </button>
                     <button type="button" onclick="window.location.href='outkod.html'">
-                        Odbierz
+                        Download
                     </button>
                     <button type="button" onclick="window.location.href='inter.html'">
-                        Moje
+                        My files
                     </button>
                     <button type="button" onclick="window.location.href='q&a.html'">
                         Q&A
@@ -29,8 +29,8 @@
                 </section>
             </header>
             <main>
-                <section id="kod1">
-                    <section id="kod">
+                <section id="share-container">
+                    <section id="share-editor">
                         <form id="shareForm">
                             <div class="share-type-tabs" role="tablist" aria-label="Rodzaj udostępnienia">
                                 <button class="share-type active" id="textTypeButton" type="button" role="tab" aria-selected="true" data-type="text">Tekst</button>
@@ -55,11 +55,11 @@
 
                             <label for="openLimit">Liczba otwarć:</label><br>
                             <input type="number" id="openLimit" name="openLimit" min="1" max="100" value="1" required>
-                            <button id="gowno1" type="submit" class="search-btn">Udostępnij</button>
+                            <button id="share-submit" type="submit" class="search-btn">Udostępnij</button>
                         </form>
                     </section>
                 </section>
-                <section id="wynikkod">
+                <section id="result-panel">
                     <p class="shared-status">Wybierz tekst albo plik, aby utworzyć kod.</p>
                 </section>
             </main>

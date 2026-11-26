@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+    <html lang="pl">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Odbierz udostępnione dane</title>
+            <style>
+                @import url(style.css);
+            </style>
+        </head>
+        <body>
+            <header>
+                <section id="logo-account" type="button" onclick="window.location.href='login.html'">
+                        <button id="account-avatar"></button>
+                </section>
+                <section id="navigation">
+                    <button type="button" onclick="window.location.href='upload.html'">
+                        Udostępnij
+                    </button>
+                    <button type="button" onclick="window.location.href='download.html'">
+                        Odbierz
+                    </button>
+                </section>
+            </header>
+            <main>
+                <section id="share-container">
+                    <section id="share-editor">
+                        <form id="codeForm">
+                            <label for="access-code">Podaj Kod:</label><br>
+                            <section>
+                                <input type="text" id="access-code" name="access-code" maxlength="12" autocomplete="off">
+                                <button id="share-submit" type="submit" class="search-btn" aria-label="Wyszukaj">OK</button>
+                            </section>
+                        </form>
+                    </section>
+                </section>
+                <section id="result-panel">
+                    <p class="shared-status">Wpisz kod, aby pobrać udostępniony tekst lub plik.</p>
+                </section>
+            </main>
+            <script src="share-store.js"></script>
+            <script type="module" src="auth-logo.js"></script>
+            <script type="module" src="share-store.js"></script>
+            <script type="module" src="download.js"></script>
+        </body>
+    </html>

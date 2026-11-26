@@ -1,7 +1,7 @@
 body {
     margin: 0;
 }
-#elo {
+#account-avatar {
     position: relative;
     background: linear-gradient(90deg, rgb(123, 123, 255), rgb(255, 146, 250));
     border: 0px;
@@ -15,7 +15,7 @@ body {
     font-weight: bold;
 }
 
-#elo.has-user-status::after {
+#account-avatar.has-user-status::after {
     content: '';
     position: absolute;
     right: -2px;
@@ -26,15 +26,15 @@ body {
     border-radius: 50%;
 }
 
-#elo.status-online::after {
+#account-avatar.status-online::after {
     background: #35a66f;
 }
 
-#elo.status-away::after {
+#account-avatar.status-away::after {
     background: #e3a52f;
 }
 
-#elo.status-offline::after {
+#account-avatar.status-offline::after {
     background: #7a7a7a;
 }
 .logo {
@@ -58,7 +58,7 @@ header {
     height: 60px;
     text-align: center;
 }
-#kod1 {
+#share-container {
     width: min(900px, calc(100% - 40px));
     min-height: 200px;
     height: auto;
@@ -69,7 +69,7 @@ header {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);
     border-radius: 10px;
 }
-#kod1 input,
+#share-container input,
 .creator-text {
     background: linear-gradient(90deg, rgb(123, 123, 255), rgb(255, 146, 250));
     border-radius: 25px;
@@ -142,7 +142,7 @@ header {
     text-align: center;
 }
 
-#shareForm #gowno1 {
+#shareForm #share-submit {
     width: 160px;
     margin-top: 8px;
 }
@@ -162,7 +162,7 @@ header {
     letter-spacing: 2px;
 }
 
-#gowno1 {
+#share-submit {
     background: linear-gradient(90deg, rgb(123, 123, 255), rgb(255, 146, 250));
     border-radius: 25px;
     border: 0px;
@@ -170,12 +170,12 @@ header {
     width: 40px;
     color: white;
 }
-#kod {
+#share-editor {
     width: 100%;
     box-sizing: border-box;
     padding: 24px;
 }
-#wynikkod {
+#result-panel {
     text-align: center;
     background-color: #e7e5c7;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08), 0 6px 16px rgba(0, 0, 0, 0.08);

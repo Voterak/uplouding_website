@@ -13,15 +13,15 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const logo = document.getElementById('elo');
+const accountAvatar = document.getElementById('account-avatar');
 
-if (logo) {
+if (accountAvatar) {
     const statuses = ['online', 'away', 'offline'];
 
     function applyStatus(status) {
-        logo.classList.remove('status-online', 'status-away', 'status-offline');
-        logo.classList.add(`status-${status}`);
-        logo.dataset.status = status;
+        accountAvatar.classList.remove('status-online', 'status-away', 'status-offline');
+        accountAvatar.classList.add(`status-${status}`);
+        accountAvatar.dataset.status = status;
 
         const names = {
             online: 'Status: dostępny',
@@ -29,12 +29,12 @@ if (logo) {
             offline: 'Status: offline'
         };
 
-        logo.title = names[status];
-        logo.setAttribute('aria-label', names[status]);
+        accountAvatar.title = names[status];
+        accountAvatar.setAttribute('aria-label', names[status]);
         localStorage.setItem('logoStatus', status);
     }
 
-    logo.addEventListener('click', () => {
+    accountAvatar.addEventListener('click', () => {
         const isLoggedIn = Boolean(localStorage.getItem('currentUser'));
 
         if (!isLoggedIn) {
@@ -42,7 +42,7 @@ if (logo) {
             return;
         }
 
-        const current = logo.dataset.status || 'online';
+        const current = accountAvatar.dataset.status || 'online';
         const next = statuses[(statuses.indexOf(current) + 1) % statuses.length];
         applyStatus(next);
     });
@@ -51,15 +51,15 @@ if (logo) {
         if (user) {
             localStorage.setItem('currentUser', user.uid);
             const initial = (user.email || 'U').trim().charAt(0).toUpperCase();
-            logo.textContent = initial;
-            logo.classList.add('has-user-status');
+            accountAvatar.textContent = initial;
+            accountAvatar.classList.add('has-user-status');
             applyStatus(localStorage.getItem('logoStatus') || 'online');
         } else {
             localStorage.removeItem('currentUser');
-            logo.textContent = 'LS';
-            logo.classList.remove('has-user-status', 'status-online', 'status-away', 'status-offline');
-            logo.title = 'Zaloguj się';
-            logo.setAttribute('aria-label', 'Zaloguj się');
+            accountAvatar.textContent = 'LS';
+            accountAvatar.classList.remove('has-user-status', 'status-online', 'status-away', 'status-offline');
+            accountAvatar.title = 'Zaloguj się';
+            accountAvatar.setAttribute('aria-label', 'Zaloguj się');
         }
     });
 }
