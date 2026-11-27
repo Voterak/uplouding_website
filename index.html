@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-    <html lang="pl">
+    <html lang="en">
         <head>
             <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <style>
                 @import url(style.css);
             </style>
@@ -11,20 +12,15 @@
                 <section id="logo-account">
                         <button id="account-avatar" type="button">LS</button>
                 </section>
-                <section id="navigation">
-                    <button type="button" onclick="window.location.href='upload.html'">
-                        Upload
-                    </button>
-                    <button type="button" onclick="window.location.href='download.html'">
-                        Download
-                    </button>
-                    <button type="button" onclick="window.location.href='inter.html'">
-                        My files
-                    </button>
-                    <button type="button" onclick="window.location.href='q&a.html'">
-                        Q&A
-                    </button>
-                </section>
+                <details class="menu">
+                    <summary class="menu-toggle" aria-label="Open menu" title="Menu">
+                        <span></span><span></span><span></span>
+                    </summary>
+                    <nav class="menu-panel" aria-label="Main menu">
+                        <a href="upload.html">Upload</a>
+                        <a href="download.html">Download</a>
+                    </nav>
+                </details>
             </header>
             <section id="dev1_1">
                 <iframe src="dev1.html"></iframe>

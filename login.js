@@ -1,4 +1,4 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getApp, getApps, initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
 import {
     getAuth,
     createUserWithEmailAndPassword,
@@ -16,7 +16,7 @@ const firebaseConfig = {
     measurementId: "G-P043XM458N"
 };
 
-const app = initializeApp(firebaseConfig);
+const app = getApps().length ? getApp() : initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
 const authForm = document.getElementById('authForm');
@@ -40,8 +40,8 @@ function setMode(nextMode) {
     loginTab.setAttribute('aria-selected', String(!isRegister));
     registerTab.setAttribute('aria-selected', String(isRegister));
 
-    authTitle.textContent = isRegister ? 'Utwórz konto' : 'Zaloguj się';
-    authSubmit.textContent = isRegister ? 'Zarejestruj się' : 'Zaloguj się';
+    authTitle.textContent = isRegister ? 'Create an account' : 'Log in';
+    authSubmit.textContent = isRegister ? 'Register' : 'Log in';
     authPassword.autocomplete = isRegister ? 'new-password' : 'current-password';
     authMessage.textContent = '';
     authMessage.className = 'auth-message';
@@ -54,12 +54,12 @@ registerTab.addEventListener('click', () => setMode('register'));
 passwordToggle.addEventListener('click', () => {
     const visible = authPassword.type === 'text';
     authPassword.type = visible ? 'password' : 'text';
-    passwordToggle.textContent = visible ? 'Pokaż' : 'Ukryj';
-    passwordToggle.setAttribute('aria-label', visible ? 'Pokaż hasło' : 'Ukryj hasło');
+    passwordToggle.textContent = visible ? 'Show' : 'Hide';
+    passwordToggle.setAttribute('aria-label', visible ? 'Show password' : 'Hide password');
 });
 
 onAuthStateChanged(auth, (user) => {
-    if (user) {
+    if (user && !user.isAnonymous) {
         localStorage.setItem('currentUser', user.uid);
     } else {
         localStorage.removeItem('currentUser');
@@ -73,14 +73,14 @@ authForm.addEventListener('submit', async (event) => {
     const password = authPassword.value;
 
     if (!email) {
-        authMessage.textContent = 'Wpisz adres e-mail.';
+        authMessage.textContent = 'Enter your email address.';
         authMessage.className = 'auth-message error';
         authName.focus();
         return;
     }
 
     if (password.length < 6) {
-        authMessage.textContent = 'Hasło musi mieć co najmniej 6 znaków.';
+        authMessage.textContent = 'Password must be at least 6 characters long.';
         authMessage.className = 'auth-message error';
         authPassword.focus();
         return;
@@ -89,24 +89,24 @@ authForm.addEventListener('submit', async (event) => {
     try {
         if (mode === 'register') {
             await createUserWithEmailAndPassword(auth, email, password);
-            authMessage.textContent = 'Konto zostało utworzone. Przekierowuję...';
+            authMessage.textContent = 'Account created. Redirecting...';
         } else {
             await signInWithEmailAndPassword(auth, email, password);
-            authMessage.textContent = 'Zalogowano pomyślnie. Przekierowuję...';
+            authMessage.textContent = 'Successfully logged in. Redirecting...';
         }
 
         authMessage.className = 'auth-message success';
     } catch (error) {
         const messages = {
-            'auth/email-already-in-use': 'Ten adres e-mail ma już konto.',
-            'auth/invalid-email': 'Nieprawidłowy adres e-mail.',
-            'auth/invalid-credential': 'Nieprawidłowy e-mail lub hasło.',
-            'auth/user-not-found': 'Nie znaleziono konta dla tego e-maila.',
-            'auth/wrong-password': 'Nieprawidłowe hasło.',
-            'auth/too-many-requests': 'Zbyt wiele prób. Spróbuj później.'
+            'auth/email-already-in-use': 'An account already exists for this email address.',
+            'auth/invalid-email': 'Invalid email address.',
+            'auth/invalid-credential': 'Invalid email or password.',
+            'auth/user-not-found': 'No account was found for this email address.',
+            'auth/wrong-password': 'Incorrect password.',
+            'auth/too-many-requests': 'Too many attempts. Please try again later.'
         };
 
-        authMessage.textContent = messages[error.code] || 'Wystąpił błąd Firebase. Spróbuj ponownie.';
+        authMessage.textContent = messages[error.code] || 'A Firebase error occurred. Please try again.';
         authMessage.className = 'auth-message error';
         return;
     }

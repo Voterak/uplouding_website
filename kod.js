@@ -57,18 +57,18 @@ async function makeCode() {
 function showCode(code) {
     result.innerHTML = `
         <div class="shared-result">
-            <strong>Kod udostępniania</strong>
+            <strong>Share code</strong>
             <div class="share-code-row">
                 <span id="createdCode" class="created-code">${code}</span>
-                <button id="copyCode" class="shared-save" type="button">Kopiuj</button>
+                <button id="copyCode" class="shared-save" type="button">Copy</button>
             </div>
-            <p id="shareStatus" class="shared-status success">Gotowe. Wpisz ten kod na stronie Odbierz.</p>
+            <p id="shareStatus" class="shared-status success">Done. Enter this code on the Retrieve page.</p>
         </div>
     `;
 
     document.getElementById('copyCode').addEventListener('click', async () => {
         await navigator.clipboard.writeText(code);
-        document.getElementById('shareStatus').textContent = 'Kod skopiowany.';
+        document.getElementById('shareStatus').textContent = 'Code copied.';
     });
 }
 
@@ -81,7 +81,7 @@ shareForm.addEventListener('submit', async (event) => {
     const limit = Number(openLimit.value);
 
     if (!Number.isInteger(limit) || limit < 1 || limit > 100) {
-        result.innerHTML = '<p class="shared-status error">Liczba otwarć musi być od 1 do 100.</p>';
+        result.innerHTML = '<p class="shared-status error">The number of opens must be between 1 and 100.</p>';
         openLimit.focus();
         return;
     }
@@ -89,13 +89,13 @@ shareForm.addEventListener('submit', async (event) => {
     const selectedType = textSharePanel.hidden ? 'file' : 'text';
 
     if ((selectedType === 'text' && !plainText) || (selectedType === 'file' && !file)) {
-        result.innerHTML = '<p class="shared-status error">Wpisz tekst albo wybierz plik.</p>';
+        result.innerHTML = '<p class="shared-status error">Enter some text or choose a file.</p>';
         return;
     }
 
     if (file) {
         if (file.size > 4 * 1024 * 1024) {
-            result.innerHTML = '<p class="shared-status error">Plik jest za duży. Maksymalny rozmiar to 4 MB.</p>';
+            result.innerHTML = '<p class="shared-status error">The file is too large. The maximum size is 4 MB.</p>';
             return;
         }
 
@@ -117,12 +117,12 @@ shareForm.addEventListener('submit', async (event) => {
                 await ShareStore.save(code, items[code]);
                 showCode(code);
             } catch (error) {
-                result.innerHTML = `<p class="shared-status error">Nie zapisano w Firebase: ${error.message}</p>`;
+                result.innerHTML = `<p class="shared-status error">Could not save to Firebase: ${error.message}</p>`;
             }
         };
 
         reader.onerror = () => {
-            result.innerHTML = '<p class="shared-status error">Nie udało się odczytać pliku.</p>';
+            result.innerHTML = '<p class="shared-status error">Could not read the file.</p>';
         };
 
         reader.readAsDataURL(file);
@@ -143,6 +143,6 @@ shareForm.addEventListener('submit', async (event) => {
         await ShareStore.save(code, items[code]);
         showCode(code);
     } catch (error) {
-        result.innerHTML = `<p class="shared-status error">Nie zapisano w Firebase: ${error.message}</p>`;
+        result.innerHTML = `<p class="shared-status error">Could not save to Firebase: ${error.message}</p>`;
     }
 });

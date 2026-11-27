@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-    <html lang="pl">
+    <html lang="en">
         <head>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Odbierz udostępnione dane</title>
+            <title>Retrieve shared content</title>
             <style>
                 @import url(style.css);
             </style>
@@ -13,32 +13,32 @@
                 <section id="logo-account" type="button" onclick="window.location.href='login.html'">
                         <button id="account-avatar"></button>
                 </section>
-                <section id="navigation">
-                    <button type="button" onclick="window.location.href='kod.html'">
-                        Udostępnij
-                    </button>
-                    <button type="button" onclick="window.location.href='outkod.html'">
-                        Odbierz
-                    </button>
-                </section>
+                <details class="menu">
+                    <summary class="menu-toggle" aria-label="Open menu" title="Menu">
+                        <span></span><span></span><span></span>
+                    </summary>
+                    <nav class="menu-panel" aria-label="Main menu">
+                        <a href="kod.html">Upload</a>
+                        <a href="outkod.html">Download</a>
+                    </nav>
+                </details>
             </header>
             <main>
                 <section id="share-container">
                     <section id="share-editor">
                         <form id="codeForm">
-                            <label for="access-code">Podaj Kod:</label><br>
-                            <section>
+                            <label for="access-code">Enter code:</label><br>
+                            <div class="code-input-row">
                                 <input type="text" id="access-code" name="access-code" maxlength="12" autocomplete="off">
-                                <button id="share-submit" type="submit" class="search-btn" aria-label="Wyszukaj">OK</button>
-                            </section>
+                                <button id="share-submit" type="submit" class="search-btn" aria-label="Search">OK</button>
+                            </div>
                         </form>
                     </section>
                 </section>
                 <section id="result-panel">
-                    <p class="shared-status">Wpisz kod, aby pobrać udostępniony tekst lub plik.</p>
+                    <p class="shared-status">Enter a code to retrieve shared text or a file.</p>
                 </section>
             </main>
-            <script src="share-store.js"></script>
             <script type="module" src="auth-logo.js"></script>
             <script type="module" src="share-store.js"></script>
             <script type="module" src="outkod.js"></script>

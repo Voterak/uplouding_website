@@ -20,18 +20,18 @@ function showText(code, item) {
     result.innerHTML = `
         <div class="shared-result">
             <div class="shared-toolbar">
-                <strong>Udostępniony tekst</strong>
+                <strong>Shared text</strong>
                 <span class="shared-code">Kod: ${escapeHtml(code)}</span>
             </div>
-            <div class="format-toolbar editor-format-toolbar" aria-label="Formatowanie tekstu">
-                <button type="button" class="format-button" data-command="bold" aria-label="Pogrubienie"><b>B</b></button>
-                <button type="button" class="format-button" data-command="italic" aria-label="Kursywa"><i>I</i></button>
-                <button type="button" class="format-button" data-command="underline" aria-label="Podkreślenie"><u>U</u></button>
-                <button type="button" class="format-button marker-button" data-command="backColor" data-value="#ffe58f" aria-label="Zakreślacz" title="Zakreślacz"><span></span></button>
+            <div class="format-toolbar editor-format-toolbar" aria-label="Text formatting">
+                <button type="button" class="format-button" data-command="bold" aria-label="Bold"><b>B</b></button>
+                <button type="button" class="format-button" data-command="italic" aria-label="Italic"><i>I</i></button>
+                <button type="button" class="format-button" data-command="underline" aria-label="Underline"><u>U</u></button>
+                <button type="button" class="format-button marker-button" data-command="backColor" data-value="#ffe58f" aria-label="Highlight" title="Highlight"><span></span></button>
             </div>
             <div id="sharedText" class="shared-text" contenteditable="true" role="textbox" aria-multiline="true">${item.content}</div>
-            <button id="saveSharedText" class="shared-save" type="button">Zapisz zmiany</button>
-            <p id="sharedStatus" class="shared-status" role="status">Pozostałe otwarcia: ${item.opensRemaining}</p>
+            <button id="saveSharedText" class="shared-save" type="button">Save changes</button>
+            <p id="sharedStatus" class="shared-status" role="status">Opens remaining: ${item.opensRemaining}</p>
         </div>
     `;
 
@@ -52,7 +52,7 @@ function showText(code, item) {
         itemToSave.updatedAt = Date.now();
         await ShareStore.save(code, itemToSave);
 
-        status.textContent = 'Zmiany zapisane.';
+        status.textContent = 'Changes saved.';
         status.className = 'shared-status success';
     });
 }
@@ -60,10 +60,10 @@ function showText(code, item) {
 function showFile(code, item) {
     result.innerHTML = `
         <div class="shared-result">
-            <strong>Udostępniony plik</strong>
+            <strong>Shared file</strong>
             <p class="shared-file-name">${escapeHtml(item.name)}</p>
-            <a class="shared-download" id="sharedDownload" download="${escapeHtml(item.name)}">Pobierz plik</a>
-            <p class="shared-status">Kod: ${escapeHtml(code)} | Pozostałe otwarcia: ${item.opensRemaining}</p>
+            <a class="shared-download" id="sharedDownload" download="${escapeHtml(item.name)}">Download file</a>
+            <p class="shared-status">Code: ${escapeHtml(code)} | Opens remaining: ${item.opensRemaining}</p>
         </div>
     `;
 
@@ -76,7 +76,7 @@ codeForm.addEventListener('submit', async (event) => {
     const code = codeInput.value.trim().toUpperCase();
 
     if (!code) {
-        result.innerHTML = '<p class="shared-status error">Wpisz kod udostępniania.</p>';
+        result.innerHTML = '<p class="shared-status error">Enter a share code.</p>';
         codeInput.focus();
         return;
     }
@@ -85,13 +85,13 @@ codeForm.addEventListener('submit', async (event) => {
     const item = await ShareStore.get(code);
 
     if (!item) {
-        result.innerHTML = '<p class="shared-status error">Nie znaleziono elementu dla tego kodu.</p>';
+        result.innerHTML = '<p class="shared-status error">No item was found for this code.</p>';
         return;
     }
 
     if (typeof item.opensRemaining === 'number') {
         if (item.opensRemaining <= 0) {
-            result.innerHTML = '<p class="shared-status error">Kod został już otwarty maksymalną liczbę razy.</p>';
+            result.innerHTML = '<p class="shared-status error">This code has reached its maximum number of opens.</p>';
             delete items[code];
             await ShareStore.remove(code);
             return;
